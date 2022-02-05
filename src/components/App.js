@@ -1,0 +1,38 @@
+import React from "react"
+import Signup from "./Signup"
+import { Container } from "react-bootstrap"
+import AuthProvider from "../contexts/AuthContext"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import Dashboard from "./Dashboard"
+import Login from "./Login"
+import PrivateRoute from "./PrivateRoute"
+import ForgotPassword from "./ForgotPassword"
+import UpdateProfile from "./UpdateProfile"
+import NewForm from "./NewForm"
+import { Provider } from "react-redux"
+import store from "../store"
+import FillForm from "./FillForm"
+function App() {
+  return (
+      <>
+        <Provider store={store}>
+          <Router>
+            <AuthProvider>
+              <Switch>
+                <PrivateRoute exact path="/" component={Dashboard} />
+                <PrivateRoute exact path="/newform" component={NewForm} />
+                <PrivateRoute path="/update-profile" component={UpdateProfile} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/fillform/:uid/:fid" component={FillForm} />
+                <Route path="/login" component={Login} />
+                <Route path="/forgot-password" component={ForgotPassword} />
+
+              </Switch>
+            </AuthProvider>
+          </Router>
+        </Provider>
+      </>
+  )
+}
+
+export default App
