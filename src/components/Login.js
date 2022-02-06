@@ -22,8 +22,17 @@ function Login(props) {
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
       history.push("/")
-    } catch {
-      setError("Failed to log in")
+    } catch(e) {
+      switch(e.code) {
+        case 'auth/user-not-found': 
+          setError("User Not Found, Please sign up first, to login!");
+          break;
+        case 'auth/wrong-password':
+          setError("Wrong Password!");
+          break;
+        default: setError("Failed to login!");
+      }
+      
     }
 
     setLoading(false)

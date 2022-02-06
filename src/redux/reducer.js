@@ -32,6 +32,12 @@ const formReducer = (state = initialState, action) => {
             questions: [],
             list: [...state.list, ...action.payload]
         }
+        case 'RESET': return {
+            currentUser: null,
+            questions: [],
+            url: '',
+            list: []
+        }
         
         default: return state;
     }

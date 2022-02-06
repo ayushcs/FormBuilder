@@ -39,3 +39,9 @@ export const saveListingResponse = (list) => {
         payload: list
     }
 }
+
+export const reset = () => {
+    return {
+        type: 'RESET',
+    }
+}

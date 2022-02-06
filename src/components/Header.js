@@ -3,9 +3,9 @@ import { Nav, Alert, Navbar, Button } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import {connect} from 'react-redux';
 import { Link, useHistory } from "react-router-dom";
-import {resetQues} from '../redux/actions';
+import {resetQues, reset} from '../redux/actions';
 import icon from '../icon.png';
-function Header({currentUser, resetQues, home, showHeaderOnly}) {
+function Header({currentUser,reset, resetQues, home, showHeaderOnly}) {
     const [error, setError] = useState("")
     const {logout } = useAuth()
     const history = useHistory()
@@ -14,7 +14,8 @@ function Header({currentUser, resetQues, home, showHeaderOnly}) {
         setError("")
 
         try {
-        await logout()
+            await logout()
+            reset()
             history.push("/login")
         } catch {
             setError("Failed to log out")
@@ -69,6 +70,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         resetQues : () => dispatch(resetQues()),
+        reset : () => dispatch(reset()),
+
     }
  }
  
