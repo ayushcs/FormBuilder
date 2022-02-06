@@ -3,6 +3,7 @@ import { Container, Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 import {connect} from 'react-redux';
+import Header from "./Header";
 
 function Login(props) {
   const {currentUser} = props;
@@ -36,6 +37,7 @@ function Login(props) {
   
   return (
     <>
+      <Header showHeaderOnly={true} />
       <Container
         className="d-flex align-items-center justify-content-center"
         style={{ minHeight: "100vh" }}

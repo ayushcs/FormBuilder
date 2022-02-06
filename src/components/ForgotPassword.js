@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 import { Container, Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import { Link } from "react-router-dom"
+import Header from "./Header"
 
 export default function ForgotPassword() {
   const emailRef = useRef()
@@ -28,6 +29,7 @@ export default function ForgotPassword() {
 
   return (
     <>
+      <Header showHeaderOnly={true} />
       <Container
         className="d-flex align-items-center justify-content-center"
         style={{ minHeight: "100vh" }}

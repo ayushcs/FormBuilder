@@ -4,8 +4,8 @@ import { useAuth } from "../contexts/AuthContext"
 import {connect} from 'react-redux';
 import { Link, useHistory } from "react-router-dom";
 import {resetQues} from '../redux/actions';
-
-function Header({currentUser, resetQues, home}) {
+import icon from '../icon.png';
+function Header({currentUser, resetQues, home, showHeaderOnly}) {
     const [error, setError] = useState("")
     const {logout } = useAuth()
     const history = useHistory()
@@ -27,17 +27,22 @@ function Header({currentUser, resetQues, home}) {
     return (
         <>
             <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Container>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-between'> 
                     <Nav className="me-auto">
-                        <Link className="text-white pr-5 my-2" to="/">
+                        <Navbar.Text className="text-white my-2">
+                            <img width="28" className='logo' src={icon} />
+                            <span>Form Builder</span>
+                        </Navbar.Text>
+                        {!showHeaderOnly? 
+                        <><Link className="my-3 px-lg-4 text-white" to="/">
                             {home ? 'Go To Home' : 'New Form'}
                         </Link>
-                        <Link className="text-white my-2" to="/listing">
+                        <Link className="text-white my-3" to="/listing">
                             All Forms
-                        </Link>
+                        </Link></> : null}
                     </Nav>
+                    {!showHeaderOnly? 
                     <Nav>
                         <Navbar.Text className="text-white my-2">
                             Signed in as: {currentUser.email}
@@ -47,9 +52,8 @@ function Header({currentUser, resetQues, home}) {
                                 LOGOUT
                             </Button>
                         </Navbar.Text>
-                    </Nav>
+                    </Nav> : null}
                 </Navbar.Collapse>
-                </Container>
             </Navbar>
             {error && <Alert variant="danger">{error}</Alert>}
         </>

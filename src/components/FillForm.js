@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import {retriveForm} from '../firebase'
 import SuccedModel from '../Models/SuccedModel';
 import {connect} from 'react-redux';
+import Header from './Header';
 
 function FillForm({currentUser}) {
     let {uid, fid} = useParams();
@@ -61,6 +62,9 @@ function FillForm({currentUser}) {
     }, [formData])
 
     const isVisitedUsers = (response)=> {
+        if (currentUser == null) {
+            return false;
+        }
         let responseData = response.filter((item) => item.email == currentUser.email);
         if (responseData.length > 0) {
             return responseData[0];
@@ -145,9 +149,10 @@ function FillForm({currentUser}) {
     }
     return (
         <>
+            <Header showHeaderOnly={true} />
             {valid ?
             <>
-                <Container>
+                <Container className="my-5 pt-5">
                     <div className='d-flex my-2 justify-content-between'>
                         <span className='badge badge-success'>Form By: {formData.oemail} </span>
                         <span className='badge badge-info'>Form name: {formData.ques.name ? formData.ques.name: 'Not Set'} </span>
@@ -190,9 +195,11 @@ function FillForm({currentUser}) {
                     </Form>
                 </Container>
             </>
-            : <Alert className="mt-3 mx-5" variant="info">
-                {msg} {valid != null ? <Link to="/">Go to Home</Link> : '' }
-              </Alert>
+            : <div className="pt-5">
+                <Alert className="mt-5 mx-5" variant="info">
+                    {msg} {valid != null ? <Link to="/">Go to Home</Link> : '' }
+                </Alert>
+              </div>
             }
         </>
     );
