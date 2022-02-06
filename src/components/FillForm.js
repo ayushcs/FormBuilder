@@ -62,7 +62,7 @@ function FillForm({currentUser}) {
     }, [formData])
 
     const isVisitedUsers = (response)=> {
-        if (currentUser == null) {
+        if (currentUser == null || Object.keys(response).length == 0) {
             return false;
         }
         let responseData = response.filter((item) => item.email == currentUser.email);
