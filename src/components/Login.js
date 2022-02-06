@@ -54,7 +54,7 @@ function Login(props) {
                   <Form.Label>Password</Form.Label>
                   <Form.Control type="password" ref={passwordRef} required />
                 </Form.Group>
-                <Button disabled={loading} className="w-100" type="submit">
+                <Button variant="dark" disabled={loading} className="w-100" type="submit">
                   Log In
                 </Button>
               </Form>

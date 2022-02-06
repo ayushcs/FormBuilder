@@ -179,7 +179,7 @@ function FillForm({currentUser}) {
                         }
                         {!nonEditable?
                         <div className="row justify-content-end px-3">
-                            <Button className="mt-2" onClick={submitForm}>Submit Form</Button>
+                            <Button variant="dark" className="mt-2" onClick={submitForm}>Submit Form</Button>
                         </div> : null}
                         <SuccedModel
                             show={successModel}

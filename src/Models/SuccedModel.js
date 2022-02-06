@@ -20,7 +20,7 @@ function SuccedModel(props) {
                     {props.url && <Form.Control type="text" name="url" className="mt-2" readOnly={true} value={props.url}></Form.Control>}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={props.handleClose}>OK</Button>
+                    <Button variant="dark" onClick={props.handleClose}>OK</Button>
                 </Modal.Footer>
             </Modal>
         </>

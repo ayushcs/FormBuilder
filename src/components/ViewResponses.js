@@ -62,7 +62,7 @@ function ViewResponses({currentUser}) {
         <>
             <Header home={true}/>
             
-            <Container className="mt-5 pt-5">
+            <Container className="my-5 pt-5">
                 {valid && formData.length > 0 ?
                 
                     <Accordion defaultActiveKey="0">

@@ -84,7 +84,7 @@ function Signup({currentUser}) {
                   <Form.Label>Password Confirmation</Form.Label>
                   <Form.Control type="password" ref={passwordConfirmRef} required />
                 </Form.Group>
-                <Button disabled={loading} className="w-100" type="submit">
+                <Button variant="dark" disabled={loading} className="w-100" type="submit">
                   Sign Up
                 </Button>
               </Form>

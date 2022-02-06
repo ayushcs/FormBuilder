@@ -16,9 +16,8 @@ function Listing(props) {
                 res.forEach((doc) => {
                     lists.push({fid:doc.id,data: doc.data()})
                 });
-                saveListingResponse(lists);
                 setLoad(false)
-                
+                saveListingResponse(lists);
             }).catch(()=> {
                 setLoad(true);
                 setMsg('Some Error Occured');
@@ -35,7 +34,7 @@ function Listing(props) {
         <>
             <Header />
             <Container className="mt-5 pt-5">
-                {load ?
+                {load || list.length == 0?
                 <Alert className="my-2" variant="info">{msg}</Alert>
                 :
                 <Table responsive striped bordered hover>

@@ -69,7 +69,7 @@ function NewForm(props) {
                 <Row>
                     <Col><h3>Create a new form</h3></Col>
                     <Col>
-                        <Button  className="float-right" onClick={() => setModalShow(true)} type="button">
+                        <Button  variant="dark" className="float-right" onClick={() => setModalShow(true)} type="button">
                             Add New Question
                         </Button>
                     </Col>
@@ -106,7 +106,7 @@ function NewForm(props) {
                 }
                 {questions.length > 0 ? 
                     <div className="row justify-content-end px-3">
-                        <Button className="mt-2" onClick={saveForm}>Save Form</Button>
+                        <Button variant="dark" className="mt-2" onClick={saveForm}>Save Form</Button>
                     </div> : null
                 }
                 <NewFormModel

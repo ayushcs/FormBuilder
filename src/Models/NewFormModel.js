@@ -68,8 +68,8 @@ function NewFormModel(props) {
                 
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={()=>resetState(false)}>Add</Button>
-          <Button onClick={()=>resetState(true)}>Close</Button>
+          <Button variant="dark" onClick={()=>resetState(false)}>Add</Button>
+          <Button variant="dark" onClick={()=>resetState(true)}>Close</Button>
         </Modal.Footer>
       </Modal>
     );

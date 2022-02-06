@@ -2,7 +2,7 @@ import React from "react"
 import Signup from "./Signup"
 import { Container } from "react-bootstrap"
 import AuthProvider from "../contexts/AuthContext"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import Dashboard from "./Dashboard"
 import Login from "./Login"
 import PrivateRoute from "./PrivateRoute"
@@ -33,6 +33,7 @@ function App() {
             </AuthProvider>
           </Router>
         </Provider>
+        <div className="badge badge-dark p-2 m-2 position-fixed" style={{bottom: 0}}> Designed by - <a href="https://github.com/ayushcs/">Ayush Srivastava</a></div>
       </>
   )
 }

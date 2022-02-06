@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Alert, Navbar, Button, Container } from "react-bootstrap"
+import { Nav, Alert, Navbar, Button, Container } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import {connect} from 'react-redux';
 import { Link, useHistory } from "react-router-dom";
@@ -26,27 +26,29 @@ function Header({currentUser, resetQues, home}) {
     }, [])
     return (
         <>
-            <Navbar fixed="top" className="bg-primary">
+            <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand>
-                        <Link className="text-white pr-5" to="/">
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-between'> 
+                    <Nav className="me-auto">
+                        <Link className="text-white pr-5 my-2" to="/">
                             {home ? 'Go To Home' : 'New Form'}
                         </Link>
-                        <Link className="text-white" to="/listing">
+                        <Link className="text-white my-2" to="/listing">
                             All Forms
                         </Link>
-                    </Navbar.Brand>
-                    <Navbar.Toggle />
-                    <Navbar.Collapse className="justify-content-end">
-                        <Navbar.Text className="text-white">
-                        Signed in as: {currentUser.email}
+                    </Nav>
+                    <Nav>
+                        <Navbar.Text className="text-white my-2">
+                            Signed in as: {currentUser.email}
                         </Navbar.Text>
                         <Navbar.Text>
-                        <Button variant="link" className="text-white" onClick={handleLogout}>
-                        LOGOUT
-                        </Button>
+                            <Button variant="link" className="badge badge-danger m-lg-2 px-0 px-lg-2 text-white" onClick={handleLogout}>
+                                LOGOUT
+                            </Button>
                         </Navbar.Text>
-                    </Navbar.Collapse>
+                    </Nav>
+                </Navbar.Collapse>
                 </Container>
             </Navbar>
             {error && <Alert variant="danger">{error}</Alert>}
