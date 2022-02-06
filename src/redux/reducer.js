@@ -11,6 +11,10 @@ const formReducer = (state = initialState, action) => {
             ...state,
             questions: [...state.questions, action.payload]
         }
+        case 'MODIFY_QUESTION' : return {
+            ...state,
+            questions: [...action.payload]
+        }
         case 'SAVE_URL' : return {
             ...state,
             url: action.payload

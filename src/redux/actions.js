@@ -5,6 +5,14 @@ export const addQuestion = (ques) => {
     }
 }
 
+export const modifyQuestion = (ques) => {
+    return {
+        type: 'MODIFY_QUESTION',
+        payload: ques
+    }
+}
+
+
 export const saveUrl = (url) => {
     return {
         type: 'SAVE_URL',

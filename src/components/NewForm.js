@@ -2,26 +2,43 @@ import React, { useState } from "react";
 import { Alert, Container, Button, Form, Row, Col } from "react-bootstrap"
 import NewFormModel from "../Models/NewFormModel";
 import Header from "./Header";
-import {addQuestion, saveUrl} from '../redux/actions';
+import {addQuestion, saveUrl, modifyQuestion} from '../redux/actions';
 import {connect} from 'react-redux';
 import {saveData} from '../firebase';
 import SuccedModel from "../Models/SuccedModel";
 import { useHistory } from "react-router-dom"
 
 function NewForm(props) {
-    const {addQuestion, questions, currentUser, saveUrl, url} = props;
+    const {addQuestion, modifyQuestion, questions, currentUser, saveUrl, url} = props;
     const [error, setError] = useState("");
     const [formName, setFormname] = useState("");
+    const [quesEdit, setQuesEdit] = useState({});
+    const [isModify, setIsModify] = useState(false);
+
+
     const [modalShow, setModalShow] = useState(false);
     const [successModel, setSucessModel] = useState(false);
     const history = useHistory();
 
     const saveNewQuestion = (ques, close) => {
         if (ques && !close) {
-            ques['id'] = questions.length + 1; 
-            addQuestion(ques);
+            if (isModify) {
+                let index = questions.findIndex((item)=> item.id == ques.id);
+                questions[index] = ques;
+                modifyQuestion(questions)
+                setIsModify(false)
+            } else {
+                ques['id'] = questions.length == 0 ? 1 : (questions[questions.length - 1].id + 1); 
+                addQuestion(ques);
+            }
         }
         setModalShow(false)
+        setQuesEdit({
+            'title': '',
+            'type': '1',
+            'value': '',
+            'id' : ''
+        });
     }
 
     const saveForm = async () => {
@@ -53,7 +70,7 @@ function NewForm(props) {
             <>  
                 { options.map((value, index) => {
                     return (
-                        <span className="mx-2" key={value}>
+                        <span className="mx-2" key={value+index+type+id}>
                             <input type={newType} disabled={true} id={value+index+newType} name={(type == "2") ? value : 'radio'+id} />
                             <label className="ml-2" htmlFor={value+index+newType}>{value}</label>
                         </span>
@@ -62,6 +79,18 @@ function NewForm(props) {
             </>
         )
     }
+
+    const editQuestion = (ques) => {
+        setIsModify(true)
+        setQuesEdit(ques);
+        setModalShow(true);
+    }
+
+    const deleteQuestion = (ques) => {
+        let newList = questions.filter((item)=> item.id != ques.id)
+        modifyQuestion(newList)
+    }
+    
     return (
         <>
             <Header />
@@ -87,9 +116,11 @@ function NewForm(props) {
                 {
                     questions.map((val, index) => {
                         return (
-                            <React.Fragment key={val.id}>
+                            <React.Fragment key={val.id+index}>
                                 <Row>
                                     <Col className="font-weight-bold my-2">{index + 1}) {val.title}</Col>
+                                    <span className="badge badge-primary mr-2 my-3 p-1" onClick={()=> editQuestion(val)}>Edit</span>
+                                    <span className="badge badge-danger ml-0 mr-3 my-3 py-1" onClick={()=> deleteQuestion(val)}>Delete</span>
                                 </Row>
                                 <Row>
                                     <Col>
@@ -110,7 +141,9 @@ function NewForm(props) {
                     </div> : null
                 }
                 <NewFormModel
+                    updateques={quesEdit}
                     show={modalShow}
+                    modify={isModify ? 1: 0}
                     onHide={(ques, close) => saveNewQuestion(ques, close)}
                 />
                 <SuccedModel
@@ -136,6 +169,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
    return {
        addQuestion : (ques) => dispatch(addQuestion(ques)),
+       modifyQuestion : (ques) => dispatch(modifyQuestion(ques)),
        saveUrl : (ques) => dispatch(saveUrl(ques))
    }
 }
