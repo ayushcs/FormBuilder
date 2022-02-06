@@ -2,6 +2,7 @@ const initialState = {
     currentUser: null,
     questions: [],
     url: '',
+    list: []
 }
 
 const formReducer = (state = initialState, action) => {
@@ -21,6 +22,11 @@ const formReducer = (state = initialState, action) => {
         case 'RESET_QUES' : return {
             ...state,
             questions: []
+        }
+        case 'SAVE_LISTING': return {
+            ...state,
+            questions: [],
+            list: [...state.list, ...action.payload]
         }
         
         default: return state;

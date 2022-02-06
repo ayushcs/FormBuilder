@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import { Alert, Navbar, Button, Container } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import {connect} from 'react-redux';
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {resetQues} from '../redux/actions';
 
-function Header({currentUser, resetQues}) {
+function Header({currentUser, resetQues, home}) {
     const [error, setError] = useState("")
     const {logout } = useAuth()
     const history = useHistory()
@@ -29,12 +29,12 @@ function Header({currentUser, resetQues}) {
             <Navbar fixed="top" className="bg-primary">
                 <Container>
                     <Navbar.Brand>
-                        <NavLink activeClassName="font-weight-bolder" className="text-white pr-5" to="/">
-                        New Form
-                        </NavLink>
-                        <NavLink activeClassName="font-weight-bolder" className="text-white" to="/update-profile">
-                        All Forms
-                        </NavLink>
+                        <Link className="text-white pr-5" to="/">
+                            {home ? 'Go To Home' : 'New Form'}
+                        </Link>
+                        <Link className="text-white" to="/listing">
+                            All Forms
+                        </Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">

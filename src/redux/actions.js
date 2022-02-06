@@ -24,3 +24,10 @@ export const resetQues = () => {
         type: 'RESET_QUES',
     }
 }
+
+export const saveListingResponse = (list) => {
+    return {
+        type: 'SAVE_LISTING',
+        payload: list
+    }
+}

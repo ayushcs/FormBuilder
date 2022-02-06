@@ -25,20 +25,24 @@ function NewForm(props) {
     }
 
     const saveForm = async () => {
-        let details = {
-            date : new Date(),
-            oemail: currentUser.email,
-            ouid: currentUser.uid,
-            ques: {name: formName, ques: questions},
-            response: []
-        }
-        try {
-            let form = await saveData(details);
-            let url = `${window.location.origin}/fillform/${ currentUser.uid}/${form.id}`;
-            saveUrl(url);
-            setSucessModel(true)
-        } catch {
-            setError('Form Not Saved, Try Again!')
+        if (!formName) {
+            setError('Form Name is Required');
+        } else {
+            let details = {
+                date : new Date(),
+                oemail: currentUser.email,
+                ouid: currentUser.uid,
+                ques: {name: formName, ques: questions},
+                response: []
+            }
+            try {
+                let form = await saveData(details);
+                let url = `${window.location.origin}/fillform/${ currentUser.uid}/${form.id}`;
+                saveUrl(url);
+                setSucessModel(true)
+            } catch {
+                setError('Form Not Saved, Try Again!')
+            }
         }
     }
 
@@ -75,7 +79,7 @@ function NewForm(props) {
                 {questions.length > 0 ? 
                     <Row>
                         <Col>
-                            <Form.Control onChange={(e)=> setFormname(e.target.value)}type="text" name="title" className="mt-2" placeholder="Enter Form Name"></Form.Control>
+                            <Form.Control onChange={(e)=> setFormname(e.target.value)}type="text" name="title" className="mt-2" placeholder="Enter Form Name (Required)"></Form.Control>
                         </Col>
                     </Row> : null
                 }

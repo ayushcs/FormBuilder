@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import {getFirestore, collection, doc, updateDoc, getDoc, addDoc} from 'firebase/firestore'
+import {getFirestore, query, getDocs, where, collection, doc, updateDoc, getDoc, addDoc} from 'firebase/firestore'
 
 const app = initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -29,6 +29,12 @@ export async function retriveForm(fid) {
   const docRef = doc(connect, "forms", fid);
   return await getDoc(docRef);
 }
+
+export async function getListing(uid) {
+  const queries = query(db, where("ouid", "==", uid));
+  return await getDocs(queries);
+}
+
 
 export const auth = getAuth(app);
 export default app

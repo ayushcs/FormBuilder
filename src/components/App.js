@@ -7,11 +7,12 @@ import Dashboard from "./Dashboard"
 import Login from "./Login"
 import PrivateRoute from "./PrivateRoute"
 import ForgotPassword from "./ForgotPassword"
-import UpdateProfile from "./UpdateProfile"
 import NewForm from "./NewForm"
 import { Provider } from "react-redux"
 import store from "../store"
 import FillForm from "./FillForm"
+import Listing from "./Listing"
+import viewResponses from "./ViewResponses"
 function App() {
   return (
       <>
@@ -21,7 +22,8 @@ function App() {
               <Switch>
                 <PrivateRoute exact path="/" component={Dashboard} />
                 <PrivateRoute exact path="/newform" component={NewForm} />
-                <PrivateRoute path="/update-profile" component={UpdateProfile} />
+                <PrivateRoute path="/listing" component={Listing} />
+                <PrivateRoute path="/viewresponses/:fid" component={viewResponses} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/fillform/:uid/:fid" component={FillForm} />
                 <Route path="/login" component={Login} />

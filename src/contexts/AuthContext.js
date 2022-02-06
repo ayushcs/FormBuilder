@@ -29,13 +29,7 @@ function AuthProvider(props) {
     return sendPasswordResetEmail(auth, email)
   }
 
-  function updateEmail(email) {
-    return currentUser.updateEmail(email)
-  }
-
-  function updatePassword(password) {
-    return currentUser.updatePassword(password)
-  }
+ 
 
   useEffect(() => onAuthStateChanged(auth, (user) => {
       updateUser(user)
@@ -48,8 +42,6 @@ function AuthProvider(props) {
     signup,
     logout,
     resetPassword,
-    updateEmail,
-    updatePassword
   }
 
   return (
