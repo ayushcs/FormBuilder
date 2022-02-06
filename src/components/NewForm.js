@@ -99,7 +99,7 @@ function NewForm(props) {
                     <Col><h3>Create a new form</h3></Col>
                     <Col>
                         <Button  variant="dark" className="float-right" onClick={() => setModalShow(true)} type="button">
-                            Add New Question
+                            Add Question
                         </Button>
                     </Col>
                 </Row>
