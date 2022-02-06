@@ -68,17 +68,15 @@ function FillForm() {
             setErr('"Your name" Field cannot be empty!')
         } else {
             setErr('');
-            console.log(formData)
+            let details =  {
+                response:  [...formData.response,{by:responseName,...formData.ques}]
+            }
+            updateFormResponse(fid, details).then(()=> {
+                setSucessModel(true)
+            }).catch(()=> {
+                setErr('Form not submitted due to some error');
+            })
         }
-        let details =  {
-            response:  [...formData.response,{by:responseName,...formData.ques}]
-        }
-        updateFormResponse(fid, details).then(()=> {
-            setSucessModel(true)
-        }).catch(()=> {
-            setErr('Form not submitted due to some error');
-        })
-
     }
 
     const closeModel = () => {
