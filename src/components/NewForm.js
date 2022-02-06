@@ -27,7 +27,7 @@ function NewForm(props) {
             oemail: currentUser.email,
             ouid: currentUser.uid,
             ques: {name: formName, ques: questions},
-            response: {}
+            response: []
         }
         try {
             let form = await saveData(details);
