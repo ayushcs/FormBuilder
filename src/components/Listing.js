@@ -26,7 +26,7 @@ function Listing(props) {
     }, [])
 
     useEffect(()=> {
-        if (!load && list.length == 0) {
+        if (!load && list.length === 0) {
             setMsg('No form found')
         } 
     },[list]);
@@ -34,7 +34,7 @@ function Listing(props) {
         <>
             <Header />
             <Container className="mt-5 pt-5">
-                {load || list.length == 0?
+                {load || list.length === 0?
                 <Alert className="my-2" variant="info">{msg}</Alert>
                 :
                 <Table responsive striped bordered hover>

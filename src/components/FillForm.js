@@ -30,14 +30,13 @@ function FillForm({currentUser}) {
                     let currData = res.data()
                     if (currData.ouid === uid) {
                         let visited = isVisitedUsers(currData.response)
-                        console.log(currData)
                         if (visited) {
                             currData['ques'] = visited;
                             setVisitedUser(true);
                         }
                         setFormData(currData);
                         setValid(true)
-                        if (currentUser && currentUser.uid == uid) {
+                        if (currentUser && currentUser.uid === uid) {
                             setNonEditable(true)
                             setErr('As you are the owner, You cannot submit/edit the form!');
                         }
@@ -62,10 +61,10 @@ function FillForm({currentUser}) {
     }, [formData])
 
     const isVisitedUsers = (response)=> {
-        if (currentUser == null || Object.keys(response).length == 0) {
+        if (currentUser === null || Object.keys(response).length === 0) {
             return false;
         }
-        let responseData = response.filter((item) => item.email == currentUser.email);
+        let responseData = response.filter((item) => item.email === currentUser.email);
         if (responseData.length > 0) {
             return responseData[0];
         }
@@ -74,20 +73,20 @@ function FillForm({currentUser}) {
 
     const createForm = (data) => {
         let {type, value, id} = data;
-        if (data['response'] == undefined || Object.keys(data['response']).length == 0) {
+        if (data['response'] === undefined || Object.keys(data['response']).length === 0) {
             data['response'] = {};
         }
         let options = value.split("\n")?.filter(item => {
             data['response'][item] = data['response'][item] ? data['response'][item] : false;
             return item;
         });
-        let newType = (type == "2") ? 'checkbox' : 'radio'
+        let newType = (type === "2") ? 'checkbox' : 'radio'
         return (
             <>  
                 { options.map((value, index) => {
                     return (
                         <span className="mx-2" key={value+index}>
-                            <input type={newType} disabled={nonEditable} id={value+index+newType} defaultChecked={data['response'][value]} value={value} onChange={(e)=> handleChange(e,data)} name={(type == "2") ? 'checkbox'+id : 'radio'+id} />
+                            <input type={newType} disabled={nonEditable} id={value+index+newType} defaultChecked={data['response'][value]} value={value} onChange={(e)=> handleChange(e,data)} name={(type === "2") ? 'checkbox'+id : 'radio'+id} />
                             <label className="ml-2" htmlFor={value+index+newType}>{value}</label>
                         </span>
                     )
@@ -97,7 +96,7 @@ function FillForm({currentUser}) {
     }
 
     const submitForm = () => {
-        if (responseName == '') {
+        if (responseName === '') {
             setErr('"Your name" Field cannot be empty!')
         } else {
             setErr('');
@@ -106,7 +105,7 @@ function FillForm({currentUser}) {
             if (visitedUser) {
                 formData.ques.by = responseName;
                 formData.ques.updatedAt = new Date();
-                let index = formData.response.findIndex((item) =>  item.email == currentUser.email)
+                let index = formData.response.findIndex((item) =>  item.email === currentUser.email)
                 formData.response[index] = formData.ques;
                 details['response'] = [...formData.response];
             } else if (currentUser?.email) {
@@ -128,16 +127,16 @@ function FillForm({currentUser}) {
         history.push("/")
     }
     const handleChange = (e,data) => {
-        if (e.target.name == 'responseBy') {
+        if (e.target.name === 'responseBy') {
             setResponseName(e.target.value)
         } else {
-            if (e.target.type == "text") {
+            if (e.target.type === "text") {
                 data['response'] = e.target.value
-            } else if (e.target.type == "cheakbox") {
+            } else if (e.target.type === "cheakbox") {
                 data['response'][e.target.value] = true;
             } else {
                 Object.keys(data['response']).forEach((item) => {
-                    if (item == e.target.value) {
+                    if (item === e.target.value) {
                         data['response'][item] = true;
                     } else {
                         data['response'][item] = false;
@@ -171,7 +170,7 @@ function FillForm({currentUser}) {
                                         </Row>
                                         <Row>
                                             <Col>
-                                                {val.type == "1" ?
+                                                {val.type === "1" ?
                                                     <Form.Control type="text" disabled={nonEditable} defaultValue={val.response} name="title" onChange={(e)=> handleChange(e,val)} placeholder="Your Answer"></Form.Control>
                                                     : createForm(val)
                                                 }

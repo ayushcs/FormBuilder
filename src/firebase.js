@@ -19,7 +19,6 @@ export async function saveData(details) {
   return addDoc(db, details);
 }
 
-
 export async function updateFormResponse(fid, details) {
   const docRef = doc(connect, "forms", fid);
   return await updateDoc(docRef, details);

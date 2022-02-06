@@ -23,12 +23,12 @@ function NewForm(props) {
     const saveNewQuestion = (ques, close) => {
         if (ques && !close) {
             if (isModify) {
-                let index = questions.findIndex((item)=> item.id == ques.id);
+                let index = questions.findIndex((item)=> item.id === ques.id);
                 questions[index] = ques;
                 modifyQuestion(questions)
                 setIsModify(false)
             } else {
-                ques['id'] = questions.length == 0 ? 1 : (questions[questions.length - 1].id + 1); 
+                ques['id'] = questions.length === 0 ? 1 : (questions[questions.length - 1].id + 1); 
                 addQuestion(ques);
             }
         }
@@ -65,13 +65,13 @@ function NewForm(props) {
 
     const createForm = (type, val, id) => {
         let options = val.split("\n")?.filter(item => item);
-        let newType = (type == "2") ? 'checkbox' : 'radio'
+        let newType = (type === "2") ? 'checkbox' : 'radio'
         return (
             <>  
                 { options.map((value, index) => {
                     return (
                         <span className="mx-2" key={value+index+type+id}>
-                            <input type={newType} disabled={true} id={value+index+newType} name={(type == "2") ? value : 'radio'+id} />
+                            <input type={newType} disabled={true} id={value+index+newType} name={(type === "2") ? value : 'radio'+id} />
                             <label className="ml-2" htmlFor={value+index+newType}>{value}</label>
                         </span>
                     )
@@ -87,7 +87,7 @@ function NewForm(props) {
     }
 
     const deleteQuestion = (ques) => {
-        let newList = questions.filter((item)=> item.id != ques.id)
+        let newList = questions.filter((item)=> item.id !== ques.id)
         modifyQuestion(newList)
     }
     
@@ -124,7 +124,7 @@ function NewForm(props) {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        {val.type == "1" ?
+                                        {val.type === "1" ?
                                             <Form.Control type="text" name="title" placeholder="User Response" disabled={true}></Form.Control>
                                             : createForm(val.type, val.value, val.id)
                                         }

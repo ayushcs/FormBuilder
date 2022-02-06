@@ -21,7 +21,7 @@ function NewFormModel(props) {
     }, [props.updateques])
 
     const resetState = (close)=> {
-        if (!close && (! ques.title || (ques.type != '1' && !ques.value))) {
+        if (!close && (! ques.title || (ques.type !== '1' && !ques.value))) {
             setError('Feilds cannot be empty!')
         } else {
             setError('')
@@ -32,6 +32,7 @@ function NewFormModel(props) {
     return (
       <Modal
         {...props}
+        animation={false}
         onShow = {()=> setQues({
             'title': '',
             'type': '1',
@@ -63,7 +64,7 @@ function NewFormModel(props) {
                     </Form.Control >
                 </Form.Group >
                 <Form.Group id={"value"} >
-                    {ques['type'] != "1" ?
+                    {ques['type'] !== "1" ?
                         <Form.Control as="textarea" defaultValue={ques.value}  placeholder="Enter new options in new line" name="value" onChange={handleChange}></Form.Control >
                         : null
                     }

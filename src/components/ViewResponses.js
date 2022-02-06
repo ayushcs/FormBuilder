@@ -34,7 +34,7 @@ function ViewResponses({currentUser}) {
     },[]);
 
     useEffect(()=> {
-        if(valid && formData.length == 0) {
+        if(valid && formData.length === 0) {
             setValid(false);
             setMsg('No Responses recieved Yet!');
         }
@@ -43,13 +43,13 @@ function ViewResponses({currentUser}) {
     const createForm = (data, sno) => {
         let {type, value, id, response} = data;
         let options = value.split("\n")?.filter(item => item);
-        let newType = (type == "2") ? 'checkbox' : 'radio'
+        let newType = (type === "2") ? 'checkbox' : 'radio'
         return (
             <>  
                 { options.map((value, index) => {
                     return (
                         <span className="mx-2" key={value+index+id+sno}>
-                            <input type={newType} checked={response[value] == true} readOnly={true} id={value+index+newType+id+sno} value={value} name={(type == "2") ? 'checkbox'+id+sno : 'radio'+id+sno} />
+                            <input type={newType} checked={response[value] === true} readOnly={true} id={value+index+newType+id+sno} value={value} name={(type === "2") ? 'checkbox'+id+sno : 'radio'+id+sno} />
                             <label className="ml-2" htmlFor={value+index+newType+id+sno}>{value}</label>
                         </span>
                     )
@@ -94,7 +94,7 @@ function ViewResponses({currentUser}) {
                                                             </Row>
                                                             <Row>
                                                                 <Col>
-                                                                    {ques.type == "1" ?
+                                                                    {ques.type === "1" ?
                                                                         <Form.Control type="text" disabled={true} name="title" value={ques.response}></Form.Control>
                                                                         : createForm(ques,index)
                                                                     }
@@ -112,7 +112,7 @@ function ViewResponses({currentUser}) {
                     }
                   </Accordion>
                 : <Alert className="mt-3 mx-5" variant="info">
-                    {msg} {valid != null ? <Link to="/listing">Go to Listing</Link> : '' }
+                    {msg} {valid !== null ? <Link to="/listing">Go to Listing</Link> : '' }
                 </Alert>
                 }
             </Container>

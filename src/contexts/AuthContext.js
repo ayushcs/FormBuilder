@@ -10,7 +10,7 @@ export function useAuth() {
 }
 
 function AuthProvider(props) {
-  const {currentUser, updateUser, children} = props;
+  const { updateUser, children} = props;
   const [loading, setLoading] = useState(true)
 
   function signup(email, password) {

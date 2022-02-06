@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Nav, Alert, Navbar, Button, Container } from "react-bootstrap"
+import { Nav, Alert, Navbar, Button } from "react-bootstrap"
 import { useAuth } from "../contexts/AuthContext"
 import {connect} from 'react-redux';
 import { Link, useHistory } from "react-router-dom";
@@ -27,13 +27,13 @@ function Header({currentUser, resetQues, home, showHeaderOnly}) {
     return (
         <>
             <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Navbar.Brand className="text-white my-2">
+                    <img width="28" className='logo' src={icon} />
+                    <span>Form Builder</span>
+                </Navbar.Brand >
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-between'> 
                     <Nav className="me-auto">
-                        <Navbar.Text className="text-white my-2">
-                            <img width="28" className='logo' src={icon} />
-                            <span>Form Builder</span>
-                        </Navbar.Text>
                         {!showHeaderOnly? 
                         <><Link className="my-3 px-lg-4 text-white" to="/">
                             {home ? 'Go To Home' : 'New Form'}

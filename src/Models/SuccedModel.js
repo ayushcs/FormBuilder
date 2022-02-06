@@ -5,6 +5,7 @@ function SuccedModel(props) {
   return (
         <>
             <Modal
+                animation={false}
                 show={props.show}
                 onHide={props.handleClose}
                 backdrop="static"
