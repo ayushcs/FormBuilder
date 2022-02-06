@@ -18,3 +18,9 @@ export const saveCurrUser = (user) => {
         payload: user
     }
 }
+
+export const resetQues = () => {
+    return {
+        type: 'RESET_QUES',
+    }
+}

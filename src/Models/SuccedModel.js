@@ -11,13 +11,13 @@ function SuccedModel(props) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Form Saved!</Modal.Title>
+                    <Modal.Title>{props.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Alert className="my-2" variant="success">
-                        Form is saved successfully, You can share the below link to get responses!
+                        {props.successMsg}
                     </Alert>
-                    <Form.Control type="text" name="url" className="mt-2" readOnly={true} value={props.url}></Form.Control>
+                    {props.url && <Form.Control type="text" name="url" className="mt-2" readOnly={true} value={props.url}></Form.Control>}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={props.handleClose}>OK</Button>

@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Form, Row, Col, Container, Button } from "react-bootstrap"
 import { Link, useHistory } from "react-router-dom"
-
+import {updateFormResponse} from '../firebase';
 import { useParams } from 'react-router-dom';
 import {retriveForm} from '../firebase'
+import SuccedModel from '../Models/SuccedModel';
+
 function FillForm() {
     let {uid, fid} = useParams();
-    console.log(uid,fid)
     let [valid, setValid] = useState(null);
+    let [responseName, setResponseName] = useState('');
+    let [err, setErr] = useState(null);
     let [msg, setMsg] = useState("Loading... Please Wait..");
+    const [successModel, setSucessModel] = useState(false);
 
     let [formData, setFormData] = useState({});
     const history = useHistory()
@@ -20,7 +24,6 @@ function FillForm() {
                 if (res.exists()) {
                     let currData = res.data()
                     if (currData.ouid === uid) {
-                        delete currData.response;
                         setFormData(currData);
                         console.log(currData)
                         setValid(true)
@@ -40,14 +43,18 @@ function FillForm() {
 
     const createForm = (data) => {
         let {type, value, id} = data;
-        let options = value.split("\n")?.filter(item => item);
+        data['response'] = {};
+        let options = value.split("\n")?.filter(item => {
+            data['response'][item] = false;
+            return item;
+        });
         let newType = (type == "2") ? 'checkbox' : 'radio'
         return (
             <>  
                 { options.map((value, index) => {
                     return (
                         <span className="mx-2" key={value}>
-                            <input type={newType} id={value+index+newType} value={value} onChange={(e)=> handleChange(e,data)} name={(type == "2") ? value : 'radio'+id} />
+                            <input type={newType} id={value+index+newType} value={value} onChange={(e)=> handleChange(e,data)} name={(type == "2") ? 'checkbox'+id : 'radio'+id} />
                             <label className="ml-2" htmlFor={value+index+newType}>{value}</label>
                         </span>
                     )
@@ -57,11 +64,33 @@ function FillForm() {
     }
 
     const submitForm = () => {
+        if (responseName == '') {
+            setErr('"Your name" Field cannot be empty!')
+        } else {
+            setErr('');
+            console.log(formData)
+        }
+        let details =  {
+            response:  [...formData.response,{by:responseName,...formData.ques}]
+        }
+        updateFormResponse(fid, details).then(()=> {
+            setSucessModel(true)
+        }).catch(()=> {
+            setErr('Form not submitted due to some error');
+        })
 
     }
 
+    const closeModel = () => {
+        history.push("/")
+    }
     const handleChange = (e,data) => {
-        console.log(e.target.value, data)
+        if (e.target.type == "text") {
+            data['response'] = e.target.value
+        } else {
+            data['response'][e.target.value] = true;
+        }
+        setFormData(formData)
     }
     return (
         <>
@@ -73,7 +102,10 @@ function FillForm() {
                         <span className='badge badge-info'>Form name: {formData.ques.name ? formData.ques.name: 'Not Set'} </span>
                         <span className='badge badge-info'>Created At: {formData?.date?.toDate()?.toGMTString()} </span>
                     </div>
+                    {err && <Alert className="my-3" variant="danger">{err}</Alert>}
+
                     <Form>
+                        <Form.Control type="text" name="responseBy" className="mt-3" onChange={(e)=> setResponseName(e.target.value)} placeholder="Your Name (required)"></Form.Control>
                         {
                             formData.ques.ques.map((val, index) => {
                                 return (
@@ -97,6 +129,12 @@ function FillForm() {
                         <div className="row justify-content-end px-3">
                             <Button className="mt-2" onClick={submitForm}>Submit Form</Button>
                         </div>
+                        <SuccedModel
+                            show={successModel}
+                            successMsg="Response Submitted successfully! Click OK to go on homepage!"
+                            title="Response Submited"
+                            handleClose={closeModel}
+                        />
                     </Form>
                 </Container>
             </>

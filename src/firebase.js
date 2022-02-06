@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import {getFirestore, collection, doc, getDoc, addDoc} from 'firebase/firestore'
+import {getFirestore, collection, doc, updateDoc, getDoc, addDoc} from 'firebase/firestore'
 
 const app = initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -17,6 +17,12 @@ const db = collection(connect, 'forms');
 
 export async function saveData(details) {
   return addDoc(db, details);
+}
+
+
+export async function updateFormResponse(fid, details) {
+  const docRef = doc(connect, "forms", fid);
+  return await updateDoc(docRef, details);
 }
 
 export async function retriveForm(fid) {

@@ -6,6 +6,7 @@ import {addQuestion, saveUrl} from '../redux/actions';
 import {connect} from 'react-redux';
 import {saveData} from '../firebase';
 import SuccedModel from "../Models/SuccedModel";
+import { useHistory } from "react-router-dom"
 
 function NewForm(props) {
     const {addQuestion, questions, currentUser, saveUrl, url} = props;
@@ -13,6 +14,8 @@ function NewForm(props) {
     const [formName, setFormname] = useState("");
     const [modalShow, setModalShow] = useState(false);
     const [successModel, setSucessModel] = useState(false);
+    const history = useHistory();
+
     const saveNewQuestion = (ques, close) => {
         if (ques && !close) {
             ques['id'] = questions.length + 1; 
@@ -108,8 +111,10 @@ function NewForm(props) {
                 />
                 <SuccedModel
                     show={successModel}
+                    successMsg=" Form is saved successfully, You can share the below link to get responses!"
+                    title="Form Saved!"
                     url= {url}
-                    handleClose={()=>setSucessModel(false)}
+                    handleClose={()=>history.push('/')}
                 />
             </Container>
         </>

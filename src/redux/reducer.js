@@ -18,6 +18,10 @@ const formReducer = (state = initialState, action) => {
             ...state,
             currentUser: action.payload
         }
+        case 'RESET_QUES' : return {
+            ...state,
+            questions: []
+        }
         
         default: return state;
     }
