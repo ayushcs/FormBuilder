@@ -76,15 +76,15 @@ function Signup({currentUser}) {
               <Form onSubmit={handleSubmit}>
                 <Form.Group id="email">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" ref={emailRef} required />
+                  <Form.Control type="email"  placeholder="Enter email" ref={emailRef} required />
                 </Form.Group>
                 <Form.Group id="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" ref={passwordRef} required />
+                  <Form.Control type="password"  placeholder="Enter Password (min 6)" ref={passwordRef} required />
                 </Form.Group>
                 <Form.Group id="password-confirm">
                   <Form.Label>Password Confirmation</Form.Label>
-                  <Form.Control type="password" ref={passwordConfirmRef} required />
+                  <Form.Control type="password" placeholder="Enter Password Again" ref={passwordConfirmRef} required />
                 </Form.Group>
                 <Button variant="dark" disabled={loading} className="w-100" type="submit">
                   Sign Up
