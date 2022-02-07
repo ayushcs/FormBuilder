@@ -30,7 +30,7 @@ function Header({currentUser,reset, resetQues, home, showHeaderOnly}) {
             <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Brand className="text-white my-2">
                     <img width="28" className='logo' src={icon} />
-                    <span>Form Builder <sup class="badge badge-danger ml-1 p-1">v<sup>1</sup></sup></span>
+                    <span>Form Builder <sup className="badge badge-danger ml-1 p-1">v<sup>1</sup></sup></span>
                 </Navbar.Brand >
                 {!showHeaderOnly ?
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" /> : null}
