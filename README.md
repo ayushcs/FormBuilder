@@ -1,18 +1,21 @@
 Form Builder, one can create, edit and submit the form like google forms by using this project.
 
+### Demo
+https://test-b95f3.web.app
+
 ## Features
 
-1) User can login or signup.
-2) User can change the password if he forgot the password.
-3) User can create a new form by adding questions and can share it by the generated link.
-4) User can edit or delete the added question while form creation.
-5) User can see the response recieved on the forms.
-6) User can see the listing of all the form which is created.
-7) User can see later his created form and total no of responses and other details.
-8) User can submit the response with (Verified user) or without login ( Guest User).
-9) Verified user can resubmit the form if submitted previously as verified user.
+1) Users can login or signup.
+2) Users can change the password if they forgot the password.
+3) Users can create a new form by adding questions and can share it by the generated link.
+4) Users can edit or delete the added question while form creation.
+5) Users can see the response received on the forms.
+6) Users can see the listing of all the forms which are created.
+7) Users can see later his created form and total no of responses and other details.
+8) Users can submit the response with (Verified user) or without login ( Guest User).
+9) Verified users can resubmit the form if submitted previously as a verified user.
 
-### `Installation`
+### Installation
 
 1) Clone the Repo.
 2) Run npm i
@@ -21,5 +24,3 @@ Form Builder, one can create, edit and submit the form like google forms by usin
 ### Tech Used
 React.js, Firebase, Redux, React Router, React-Bootstrap
 
-### Demo
-https://test-b95f3.web.app
