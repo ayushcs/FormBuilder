@@ -32,7 +32,8 @@ function Header({currentUser,reset, resetQues, home, showHeaderOnly}) {
                     <img width="28" className='logo' src={icon} />
                     <span>Form Builder</span>
                 </Navbar.Brand >
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                {!showHeaderOnly ?
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" /> : null}
                 <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-between'> 
                     <Nav className="me-auto">
                         {!showHeaderOnly? 

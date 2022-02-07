@@ -49,7 +49,7 @@ function NewFormModel(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Form >
+            <Form onSubmit={(e)=>e.preventDefault()}>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Form.Group id={"Question"}>
                     <Form.Label>Question :</Form.Label>

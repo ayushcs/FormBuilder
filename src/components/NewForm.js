@@ -41,10 +41,11 @@ function NewForm(props) {
         });
     }
 
-    const saveForm = async () => {
+    const saveForm = async (e) => {
         if (!formName) {
             setError('Form Name is Required');
         } else {
+            e.target.disabled = true;
             let details = {
                 date : new Date(),
                 oemail: currentUser.email,
@@ -151,7 +152,7 @@ function NewForm(props) {
                     successMsg=" Form is saved successfully, You can share the below link to get responses!"
                     title="Form Saved!"
                     url= {url}
-                    handleClose={()=>history.push('/')}
+                    handleClose={()=>history.push('/listing')}
                 />
             </Container>
         </>

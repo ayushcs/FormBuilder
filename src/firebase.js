@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import {getFirestore, query, getDocs, where, collection, doc, updateDoc, getDoc, addDoc} from 'firebase/firestore'
+import {getFirestore, deleteDoc, query, getDocs, where, collection, doc, updateDoc, getDoc, addDoc} from 'firebase/firestore'
 
 const app = initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -34,6 +34,10 @@ export async function getListing(uid) {
   return await getDocs(queries);
 }
 
+export async function deleteForms(fid) {
+  const docRef = doc(connect, "forms", fid);
+  return await deleteDoc(docRef);
+}
 
 export const auth = getAuth(app);
 export default app

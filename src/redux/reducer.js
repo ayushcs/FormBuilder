@@ -30,7 +30,7 @@ const formReducer = (state = initialState, action) => {
         case 'SAVE_LISTING': return {
             ...state,
             questions: [],
-            list: [...state.list, ...action.payload]
+            list: [ ...action.payload]
         }
         case 'RESET': return {
             currentUser: null,
