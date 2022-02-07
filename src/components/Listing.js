@@ -72,17 +72,20 @@ function Listing(props) {
                                             <td>{val.data.ques.name ? val.data.ques.name: 'Not Set'}</td>
                                             <td>
                                                 <Link to={"/fillform/"+currentUser.uid+"/"+val.fid} target="_blank" rel="noopener noreferrer">
-                                                    Click to open
+                                                    Open
                                                 </Link>
                                             </td>
                                             <td>{val.data.date?.toDate()?.toLocaleString('en-GB')}</td>
                                             <td>
-                                                {val.data.response.length} <br/>
-                                                <Link to={"/viewresponses/"+val.fid}>
-                                                    Click to see
-                                                </Link>
+                                                {val.data.response.length ? 
+                                                <>
+                                                    <span className='mr-2'>{val.data.response.length}</span>
+                                                    <Link to={"/viewresponses/"+val.fid}>
+                                                        ( See )
+                                                    </Link>
+                                                </> : 0}
                                             </td>
-                                            <td><span className="badge badge-danger" onClick={()=>deleteForm(val.fid)}>Delete</span></td>
+                                            <td><span className="badge badge-danger btn text-white" onClick={()=>deleteForm(val.fid)}>Delete</span></td>
                                         </tr>
                                     )
                                 })

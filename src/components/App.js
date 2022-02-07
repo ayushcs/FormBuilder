@@ -32,7 +32,7 @@ function App() {
             </AuthProvider>
           </Router>
         </Provider>
-        <div className="badge badge-dark p-2 m-2 position-fixed" style={{bottom: 0, right: 0}}> Developed by - <a href="https://github.com/ayushcs/" target="_blank" className="text-danger">Ayush Srivastava</a> &#169; 2022</div>
+        <div className="badge badge-dark p-2 m-2 position-fixed" style={{bottom: 0, right: 0}}> Developed by - <a href="https://github.com/ayushcs/" target="_blank" className="font-weight-bold text-white">Ayush Srivastava</a> &#169; 2022</div>
       </>
   )
 }

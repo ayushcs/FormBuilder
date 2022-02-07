@@ -120,8 +120,8 @@ function NewForm(props) {
                             <React.Fragment key={val.id+index}>
                                 <Row>
                                     <Col className="font-weight-bold my-2">{index + 1}) {val.title}</Col>
-                                    <span className="badge badge-primary mr-2 my-3 p-1" onClick={()=> editQuestion(val)}>Edit</span>
-                                    <span className="badge badge-danger ml-0 mr-3 my-3 py-1" onClick={()=> deleteQuestion(val)}>Delete</span>
+                                    <span className="badge badge-primary btn text-white mr-2 my-3 p-1" onClick={()=> editQuestion(val)}>Edit</span>
+                                    <span className="badge badge-danger btn text-white ml-0 mr-3 my-3 py-1" onClick={()=> deleteQuestion(val)}>Delete</span>
                                 </Row>
                                 <Row>
                                     <Col>
