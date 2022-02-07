@@ -47,7 +47,7 @@ function Header({currentUser,reset, resetQues, home, showHeaderOnly}) {
                     {!showHeaderOnly? 
                     <Nav>
                         <Navbar.Text className="text-white my-2">
-                            Signed in as: {currentUser.email}
+                            <b>Signed in as:</b> {currentUser.email}
                         </Navbar.Text>
                         <Navbar.Text>
                             <Button variant="link" className="badge badge-danger m-lg-2 px-0 px-lg-2 text-white" onClick={handleLogout}>
