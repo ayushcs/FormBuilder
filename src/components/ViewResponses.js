@@ -49,7 +49,7 @@ function ViewResponses({currentUser}) {
                 { options.map((value, index) => {
                     return (
                         <span className="mx-2" key={value+index+id+sno}>
-                            <input type={newType} checked={response[value] === true} readOnly={true} id={value+index+newType+id+sno} value={value} name={(type === "2") ? 'checkbox'+id+sno : 'radio'+id+sno} />
+                            <input type={newType} checked={response[value+index] === true} readOnly={true} id={value+index+newType+id+sno} value={value} name={(type === "2") ? 'checkbox'+id+sno : 'radio'+id+sno} />
                             <label className="ml-2" htmlFor={value+index+newType+id+sno}>{value}</label>
                         </span>
                     )

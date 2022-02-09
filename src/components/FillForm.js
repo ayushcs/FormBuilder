@@ -76,8 +76,8 @@ function FillForm({currentUser}) {
         if (data['response'] === undefined || Object.keys(data['response']).length === 0) {
             data['response'] = {};
         }
-        let options = value.split("\n")?.filter(item => {
-            data['response'][item] = data['response'][item] ? data['response'][item] : false;
+        let options = value.split("\n")?.filter((item,i) => {
+            data['response'][item+i] = data['response'][item+i] ? data['response'][item+i] : false;
             return item;
         });
         let newType = (type === "2") ? 'checkbox' : 'radio'
@@ -86,7 +86,7 @@ function FillForm({currentUser}) {
                 { options.map((value, index) => {
                     return (
                         <span className="mx-2" key={value+index}>
-                            <input type={newType} disabled={nonEditable} id={value+index+newType} defaultChecked={data['response'][value]} value={value} onChange={(e)=> handleChange(e,data)} name={(type === "2") ? 'checkbox'+id : 'radio'+id} />
+                            <input type={newType} disabled={nonEditable} id={value+index+newType} defaultChecked={data['response'][value]} value={value+index} onChange={(e)=> handleChange(e,data)} name={(type === "2") ? 'checkbox'+id : 'radio'+id} />
                             <label className="ml-2" htmlFor={value+index+newType}>{value}</label>
                         </span>
                     )
@@ -132,7 +132,7 @@ function FillForm({currentUser}) {
         } else {
             if (e.target.type === "text") {
                 data['response'] = e.target.value
-            } else if (e.target.type === "cheakbox") {
+            } else if (e.target.type === "checkbox") {
                 data['response'][e.target.value] = true;
             } else {
                 Object.keys(data['response']).forEach((item) => {
