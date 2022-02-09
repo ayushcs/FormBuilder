@@ -29,3 +29,5 @@ https://test-b95f3.web.app
 ### Tech Used
 React.js, Firebase, Redux, React Router, React-Bootstrap
 
+Feel free to star, and raising any pull request/issues.
+
