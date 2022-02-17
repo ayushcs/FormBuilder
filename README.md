@@ -27,7 +27,7 @@ https://test-b95f3.web.app
 3) Run npm start.
 
 ### NOTE
-You have to change the .env file and paste your firebase details
+You have to change the `.env` file and paste your firebase details
 
 REACT_APP_FIREBASE_API_KEY =  PASTE_YOUR_API_KEY <br />
 REACT_APP_FIREBASE_AUTH_DOMAIN =  PASTE_YOUR_AUTH_DOMAIN<br />
