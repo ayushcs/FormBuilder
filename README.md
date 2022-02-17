@@ -26,6 +26,17 @@ https://test-b95f3.web.app
 2) Run npm i
 3) Run npm start.
 
+### NOTE
+You have to change the .env file and paste your firebase details
+
+REACT_APP_FIREBASE_API_KEY =  PASTE_YOUR_API_KEY <br />
+REACT_APP_FIREBASE_AUTH_DOMAIN =  PASTE_YOUR_AUTH_DOMAIN<br />
+REACT_APP_FIREBASE_PROJECT_ID =  PASTE_YOUR_PROJECT_ID<br />
+REACT_APP_FIREBASE_STORAGE_BUCKET =  PASTE_YOUR_STORAGE_BUCKET<br />
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID =  PASTE_YOUR_MESSAGING_SENDER_ID <br />
+REACT_APP_FIREBASE_APP_ID = PASTE_YOUR_API_ID<br />
+REACT_APP_measurementId= PASTE_YOUR_measurementId
+
 ### Tech Used
 React.js, Firebase, Redux, React Router, React-Bootstrap
 
